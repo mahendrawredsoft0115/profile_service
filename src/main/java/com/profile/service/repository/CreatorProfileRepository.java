@@ -7,5 +7,4 @@ public interface CreatorProfileRepository extends JpaRepository<CreatorProfile, 
 
     Optional<CreatorProfile> findByCreatorUuid(String uuid);
 
-    boolean existsByCreatorUuid(String uuid);
 }

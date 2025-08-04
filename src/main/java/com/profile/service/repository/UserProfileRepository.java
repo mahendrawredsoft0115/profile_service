@@ -8,5 +8,4 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
 
     Optional<UserProfile> findByUserUuid(String uuid);
 
-    boolean existsByUserUuid(String uuid);
 }

@@ -12,12 +12,29 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Security configuration for the Profile Service.
+ * - Configures stateless JWT-based authentication
+ * - Applies role-based access control for secured endpoints
+ */
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    /**
+     * Configures HTTP security including:
+     * - CSRF disabled (since JWT is stateless)
+     * - Stateless session management
+     * - Public and secured route mappings
+     * - JWT authentication filter
+     * - Unauthorized response handling
+     *
+     * @param http HttpSecurity object
+     * @return configured SecurityFilterChain
+     * @throws Exception if security config fails
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -31,7 +48,6 @@ public class SecurityConfig {
                                 "/swagger-ui.html"
                         ).permitAll()
 
-                        // ✅ Use hasRole instead of hasAuthority
                         .requestMatchers("/api/profile/creator/**").hasRole(Constants.CREATOR_ROLE)
                         .requestMatchers("/api/profile/user/**").hasRole(Constants.USER_ROLE)
                         .requestMatchers("/api/profile/admin/**").hasRole(Constants.ADMIN_ROLE)
@@ -48,6 +64,13 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * Exposes AuthenticationManager bean to be used in auth services.
+     *
+     * @param config AuthenticationConfiguration injected by Spring
+     * @return AuthenticationManager
+     * @throws Exception if configuration fails
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
