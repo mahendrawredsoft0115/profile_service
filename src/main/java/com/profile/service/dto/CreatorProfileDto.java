@@ -30,9 +30,16 @@ public class CreatorProfileDto {
      */
     private String coverImageUrl;
 
+
+    /**
+     * Username to the Creator's
+     */
+    private String username;
+
     /**
      * Short biography or description of the creator.
      */
+
     private String bio;
 
     /**

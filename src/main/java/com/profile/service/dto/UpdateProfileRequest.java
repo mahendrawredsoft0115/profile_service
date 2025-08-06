@@ -14,6 +14,12 @@ import lombok.NoArgsConstructor;
 public class UpdateProfileRequest {
 
     /**
+     * Username
+     */
+    private String username;
+
+
+    /**
      * Short biography or description about the user.
      */
     private String bio;

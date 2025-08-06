@@ -42,6 +42,12 @@ public class UserProfile {
     private String coverPictureUrl;
 
     /**
+     * Username to user's
+     */
+    @Column(name="username")
+    private String usernme;
+
+    /**
      * Short biography of the user (max 1000 characters).
      */
     @Column(name = "bio", length = 1000)

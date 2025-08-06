@@ -30,6 +30,13 @@ public class UserProfileDto {
      */
     private String coverImageUrl;
 
+
+    /**
+     * Username to the Creator's
+     */
+    private String username;
+
+
     /**
      * Short biography or description of the user.
      */
